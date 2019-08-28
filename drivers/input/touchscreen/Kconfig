@@ -11,6 +11,10 @@ menuconfig INPUT_TOUCHSCREEN
 
 if INPUT_TOUCHSCREEN
 
+# HMI_L6653_A01
+source "drivers/input/touchscreen/nvt_touch_e7s/Kconfig"
+source "drivers/input/touchscreen/synaptics_dsx_e7s/Kconfig"
+
 config TOUCHSCREEN_PROPERTIES
 	def_tristate INPUT
 	depends on INPUT
