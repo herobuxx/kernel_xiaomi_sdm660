@@ -16,28 +16,17 @@
  * more details.
  *
  */
-#ifndef 	_LINUX_NVT_TOUCH_H
-#define		_LINUX_NVT_TOUCH_H
+#ifndef _LINUX_NVT_TOUCH_H
+#define	_LINUX_NVT_TOUCH_H
 
 #include <linux/i2c.h>
 #include <linux/input.h>
-#include <linux/regulator/consumer.h>
-#ifdef CONFIG_HAS_EARLYSUSPEND
-#include <linux/earlysuspend.h>
-#endif
 
 #define NVT_DEBUG 1
 
-
 #define NVTTOUCH_INT_PIN 943
 
-
-
-
-
 #define INT_TRIGGER_TYPE IRQ_TYPE_EDGE_RISING
-
-
 
 #define NVT_I2C_NAME "NVT-ts"
 #define I2C_BLDR_Address 0x01
@@ -51,10 +40,7 @@
 #endif
 #define NVT_ERR(fmt, args...)    pr_err("[%s] %s %d: " fmt, NVT_I2C_NAME, __func__, __LINE__, ##args)
 
-
 #define NVT_TS_NAME "NVTCapacitiveTouchScreen"
-
-
 
 #define TOUCH_DEFAULT_MAX_WIDTH 1080
 #define TOUCH_DEFAULT_MAX_HEIGHT 2160
@@ -64,7 +50,6 @@
 extern const uint16_t touch_key_array[TOUCH_KEY_NUM];
 #endif
 #define TOUCH_FORCE_NUM 1000
-
 
 #define NVT_TOUCH_PROC 1
 #define NVT_TOUCH_EXT_PROC 1
@@ -115,9 +100,7 @@ struct nvt_ts_data {
 	uint16_t addr;
 	int8_t phys[32];
 #if defined(CONFIG_FB)
-	struct notifier_block fb_notif;
-#elif defined(CONFIG_HAS_EARLYSUSPEND)
-	struct early_suspend early_suspend;
+	struct notifier_block notifier;
 #endif
 	struct regulator *vcc_i2c;
 	uint8_t fw_ver;
@@ -139,7 +122,7 @@ struct nvt_ts_data {
 };
 
 #if NVT_TOUCH_PROC
-struct nvt_flash_data{
+struct nvt_flash_data {
 	rwlock_t lock;
 	struct i2c_client *client;
 };
@@ -154,20 +137,18 @@ typedef enum {
 } RST_COMPLETE_STATE;
 
 typedef enum {
-    EVENT_MAP_HOST_CMD                      = 0x50,
-    EVENT_MAP_HANDSHAKING_or_SUB_CMD_BYTE   = 0x51,
-    EVENT_MAP_RESET_COMPLETE                = 0x60,
-    EVENT_MAP_FWINFO                        = 0x78,
-    EVENT_MAP_PROJECTID                     = 0x9A,
+	EVENT_MAP_HOST_CMD                      = 0x50,
+	EVENT_MAP_HANDSHAKING_or_SUB_CMD_BYTE   = 0x51,
+	EVENT_MAP_RESET_COMPLETE                = 0x60,
+	EVENT_MAP_FWINFO                        = 0x78,
+	EVENT_MAP_PROJECTID                     = 0x9A,
 } I2C_EVENT_MAP;
-
 
 extern struct nvt_ts_data *ts;
 
-
 extern int32_t CTP_I2C_READ(struct i2c_client *client, uint16_t address, uint8_t *buf, uint16_t len);
 extern int32_t CTP_I2C_WRITE(struct i2c_client *client, uint16_t address, uint8_t *buf, uint16_t len);
-extern void nvt_bootloader_reset(void);
+extern int nvt_bootloader_reset(void);
 extern void nvt_sw_reset_idle(void);
 extern int32_t nvt_check_fw_reset_state(RST_COMPLETE_STATE check_reset_state);
 extern int32_t nvt_get_fw_info(void);
