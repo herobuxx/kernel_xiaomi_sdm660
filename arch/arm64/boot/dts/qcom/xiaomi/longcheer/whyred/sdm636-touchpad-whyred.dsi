@@ -33,6 +33,7 @@
 
 &i2c_1{
 	status = "ok";
+	qcom,disable-dma;
 	synaptics_dsx@20 {
 		compatible = "synaptics,dsx-i2c";
 		reg = <0x20>;
@@ -458,5 +459,11 @@
 
 			PS_Config_Diff_Test_Frame = <50>;
 		};
+	};
+};
+
+&soc {
+	qcom,sps {
+		status = "ok";
 	};
 };
