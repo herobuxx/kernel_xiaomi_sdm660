@@ -41,7 +41,7 @@
 #include <uapi/linux/sched/types.h>
 #ifdef CONFIG_MACH_MI
 #include <linux/interrupt.h>
-#include <linux/wakelock.h>
+#include <linux/pm_wakeup.h>
 #endif
 
 #include "mdss_fb.h"
