@@ -112,6 +112,12 @@ obj-$(CONFIG_TOUCHSCREEN_SYNAPTICS_TCM)	+= synaptics_tcm/
 obj-$(CONFIG_TOUCHSCREEN_RAYDIUM_CHIPSET)  += raydium_wt030/
 obj-$(CONFIG_TOUCHSCREEN_COMMON)	+= tp_common.o
 
+# HMI_L8867_A01
+obj-$(CONFIG_TOUCHSCREEN_NVT_A) 	+= nvt_touch_a/
+
+# HMI_L6662_A01
+obj-$(CONFIG_TOUCHSCREEN_FOCAL_FT8719)  += focal_ft8719/
+
 # HMI_L6653_A01
 obj-$(CONFIG_TOUCHSCREEN_SYNAPTICS_DSX_E7S)	+= synaptics_dsx_e7s/
 obj-$(CONFIG_TOUCHSCREEN_NVT_E7S) 	+= nvt_touch_e7s/
