@@ -1436,6 +1436,7 @@ config TOUCHSCREEN_SYNAPTICS_TCM_D2T
 
 config TOUCHSCREEN_SYNAPTICS_TCM_F7A
 	bool "Synaptics TCM touchscreen"
+	default n
 	help
 	  Say Y here, if you have a Synaptics TCM touchscreen connected.
 	  If unsure, say N.
